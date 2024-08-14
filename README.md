@@ -43,7 +43,7 @@ sed [OPTION]... {script-only-if-no-other-script} [input-file]...
                  specify the desired line-wrap length for the `l' command
   --posix
                  disable all GNU extensions.
-  -E, -r, --regexp-extended
+  -E, -r, --regexp-extended  (使用扩展的正则表达式)
                  use extended regular expressions in the script
                  (for portability use POSIX -E).
   -s, --separate
@@ -154,7 +154,56 @@ UUID=c07baf5f-3867-45e4-b4e5-1d6e374a8caa                /                      
 
 
 
- 
+ **搜索替换**
+
+sed  's/parttern/string/范围'
+
+~~~
+[root@VM-20-16-opencloudos ~]# echo abc1233ccc  | sed 's/abc/efg/'
+efg1233ccc
+~~~
+
+
+
+在abc 123之中追加文本
+
+~~~
+[root@VM-20-16-opencloudos ~]# echo abc123xyz  | sed -E 's/(abc)(123)/\1666\2/'
+abc666123xyz
+~~~
+
+
+
+在文本最后追加字符 （& 表示前面搜索出的内容）
+
+~~~
+[root@VM-20-16-opencloudos ~]# echo abc123xyz  | sed -E 's/.*/&666/'
+abc123xyz666
+~~~
+
+
+
+替换文本中的id 为 当前用户的uid
+
+~~~
+sed -Eni "s/^number ([0-9]+)/number `id -u`/p" test.txt
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
